@@ -1,5 +1,7 @@
+import { EstimatedTimeDecorator } from './patterns/Decorator.js';
 import { TaskManagementFacade } from './patterns/Facade.js';
-import { NotificationObserver, EmailObserver } from './patterns/Observer.js';
+import { TaskFactory } from './patterns/Factory.js';
+import { NotificationObserver, EmailObserver, LoggingObserver } from './patterns/Observer.js';
 
 /**
  * Main entry point demonstrating all design patterns
@@ -13,9 +15,11 @@ function main() {
   // Set up observers
   const consoleObserver = new NotificationObserver('Console');
   const emailObserver = new EmailObserver('admin@example.com');
+  const logObserver = new LoggingObserver('Log');
   
   taskFacade.subscribe(consoleObserver);
   taskFacade.subscribe(emailObserver);
+  taskFacade.subscribe(logObserver);
 
   // Create tasks using factory pattern (through facade)
   console.log('--- Creating Tasks ---');
@@ -32,6 +36,12 @@ function main() {
   const task3 = taskFacade.createTask('bug', 'Memory leak', 'Fix memory leak in data processing', {
     priority: 'high'
   });
+
+  const task4 = TaskFactory.createDocumentationTask('documentation', 'Documenting', '')
+
+  const timeDecorator = new EstimatedTimeDecorator(task4, 10);
+
+  console.log(timeDecorator.getEstimatedDays());
 
   console.log('\n--- All Tasks ---');
   taskFacade.getAllTasks().forEach(task => {

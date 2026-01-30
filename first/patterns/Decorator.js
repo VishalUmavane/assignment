@@ -115,3 +115,14 @@ export class PriorityTaskDecorator extends TaskDecorator {
     }
   }
 }
+
+export class EstimatedTimeDecorator extends TaskDecorator {
+  constructor(task, estimatedHours){
+    super(task)
+    this.task.estimatedHours = estimatedHours;
+  }
+
+  getEstimatedDays(){
+    return this.task.estimatedHours / 8;
+  }
+}

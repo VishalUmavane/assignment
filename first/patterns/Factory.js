@@ -25,6 +25,9 @@ export class TaskFactory {
         task.priority = 'low';
         task.addTag('maintenance');
         break;
+      case 'documentation':
+        task.priority = 'low';
+        task.addTag('documentation');
       default:
         // Standard task
         break;
@@ -54,5 +57,11 @@ export class TaskFactory {
     return TaskFactory.createTask('bug', id, title, description, {
       priority: 'high'
     });
+  }
+
+  static createDocumentationTask(id, title, description){
+    return TaskFactory.createTask('documentation', id, title, description, {
+      priority: 'high'
+    })
   }
 }

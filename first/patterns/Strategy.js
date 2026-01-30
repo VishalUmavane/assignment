@@ -67,16 +67,34 @@ export class PriorityContext {
     return this.strategy.calculateScore(task);
   }
 
-  static getStrategyForPriority(priority) {
+  static getStrategyForPriority(priority, task) {
     switch (priority) {
       case 'high':
         return new HighPriorityStrategy();
       case 'medium':
         return new MediumPriorityStrategy();
       case 'low':
+        if(task.tags.has('documentation')) return new DocumentationPriorityStrategy();
         return new LowPriorityStrategy();
       default:
         return new MediumPriorityStrategy();
     }
+  }
+}
+
+export class DocumentationPriorityStrategy extends PriorityStrategy {
+  calculateScore(task){
+    let score = 5;
+
+    if (task.dueDate) {
+      const daysUntilDue = Math.ceil((task.dueDate - new Date()) / (1000 * 60 * 60 * 24));
+      if (daysUntilDue < 0) {
+        score += 10;
+      } else {
+        score += 5;
+      }
+    }
+    
+    return score;
   }
 }

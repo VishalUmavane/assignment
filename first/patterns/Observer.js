@@ -43,3 +43,34 @@ export class EmailObserver {
     console.log(`Sending email to ${this.email}: Task ${event} - ${JSON.stringify(data)}`);
   }
 }
+
+export class LoggingObserver {
+  constructor(name){
+    this.name = name;
+    this.logs = [];
+  }
+
+  update(event, data) {
+    const log = {
+      timestamp: new Date(),
+      event,
+      data,
+      observer: this.name
+    };
+
+    this.logs.push(log);
+    this.displayLog(log);
+  }
+
+  displayLog(log){
+    console.log("[LOG] :" + log.event + log.data)
+  }
+
+  getLogs(){
+    return this.logs;
+  }
+
+  clearLogs(){
+    this.logs = [];
+  }
+}

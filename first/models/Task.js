@@ -49,7 +49,8 @@ export class Task {
       createdAt: this.createdAt,
       completedAt: this.completedAt,
       tags: [...this.tags],
-      dueDate: this.dueDate
+      dueDate: this.dueDate,
+      estimatedHours: this.estimatedHours
     };
   }
 }
