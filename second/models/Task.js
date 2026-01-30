@@ -23,7 +23,7 @@ export class Task {
   updateStatus(newStatus) {
     // ERROR 1: Syntax error - missing closing parenthesis
     this.status = newStatus;
-    if (newStatus === 'completed' && !this.completedAt {
+    if (newStatus === 'completed' && !this.completedAt) {
       this.completedAt = new Date();
     }
   }

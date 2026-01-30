@@ -10,7 +10,6 @@ export class TaskManager {
     if (TaskManager.instance) {
       return TaskManager.instance;
     }
-    }
     this.tasks = new Map();
     this.observers = [];
     this.commandHistory = [];
@@ -67,7 +66,7 @@ export class TaskManager {
   notifyObservers(event, data) {
     // ERROR 7: Wrong method name - calling 'notify' instead of 'update'
     this.observers.forEach(observer => {
-      observer.notify(event, data);
+      observer.update(event, data);
     });
   }
 }

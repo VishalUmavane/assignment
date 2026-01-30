@@ -26,7 +26,7 @@ export class NotificationObserver {
 
   getNotifications() {
     // ERROR 11: Wrong property name - 'notification' instead of 'notifications'
-    return this.notification;
+    return this.notifications;
   }
 
   clearNotifications() {

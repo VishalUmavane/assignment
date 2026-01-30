@@ -58,11 +58,12 @@ export class TaskManagementFacade {
     const tasks = this.taskManager.getAllTasks();
     
     return tasks.map(task => {
+      if (!task) return;
       const strategy = PriorityContext.getStrategyForPriority(task.priority);
       this.priorityContext.setStrategy(strategy);
       const score = this.priorityContext.calculateTaskScore(task);
       return { task, score };
-    }).sort((a, b) => b.score - a.score).map(item => item.task);
+    }).sort((a, b) => b.score - a.score).map(item => item?.task);
   }
 
   // Undo last operation

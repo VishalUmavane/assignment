@@ -52,7 +52,7 @@ export class DatedTaskDecorator extends TaskDecorator {
   constructor(task, dueDate) {
     super(task);
     this.dueDate = dueDate;
-    task.setDueDate(dueDate);
+    // task.setDueDate(dueDate);
   }
 
   isOverdue() {
